@@ -2,9 +2,9 @@ const http = require("http");
 const OAuth = require("oauth");
 const { URL } = require("url");
 
-const { KEY, SECRET, PORT } = require("./options.json");
+const { KEY, SECRET, HOST, PORT } = require("./options.json");
 
-const CALLBACK = `http://localhost:${PORT}/callback`;
+const CALLBACK = `http://${HOST}:${PORT}/callback`;
 
 const KA2PI = new OAuth.OAuth(
 	`https://www.khanacademy.org/api/auth2/request_token?oauth_callback=${CALLBACK}`,
