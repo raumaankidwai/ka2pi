@@ -1,6 +1,6 @@
 {
 	"KEY": "consumer key",
 	"SECRET": "consumer secret",
-	"HOST": 80,
+	"HOST": "localhost",
 	"PORT": 80
 }
