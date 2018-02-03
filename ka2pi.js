@@ -2,7 +2,7 @@ const http = require("http");
 const OAuth = require("oauth").OAuth;
 const { URL } = require("url");
 
-const { KEY, SECRET } = require("./private.json");
+const { KEY, SECRET, PORT } = require("./options.json");
 
 const CALLBACK = "http://localhost:7565/callback";
 
@@ -23,4 +23,4 @@ KA2PI.getOAuthRequestToken(function (error, token, secret, results) {
 http.createServer(function (request, response) {
 	var url = new URL(request.url);
 	console.log(url.query);
-}).listen(7565);
+}).listen(PORT);
