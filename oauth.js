@@ -22,8 +22,7 @@ exports.KAOAuthSession = function KAOAuthSession (options) {
 
 /*
 	Callback should expect:
-	URL to send to user,
-	request token secret (remember to pass this to getAccessToken later on!)
+	URL to send to user
 */
 exports.KAOAuthSession.prototype.getRequestToken = function getRequestToken (callback) {
 	this.session.getOAuthRequestToken(function (error, token, secret, results) {
@@ -31,7 +30,7 @@ exports.KAOAuthSession.prototype.getRequestToken = function getRequestToken (cal
 			throw error;
 		}
 		
-		callback(`https://www.khanacademy.org/api/auth2/authorize?oauth_token=${token}`, secret);
+		callback(`https://www.khanacademy.org/api/auth2/authorize?oauth_token=${token}`);
 	});
 };
 
@@ -39,10 +38,10 @@ exports.KAOAuthSession.prototype.getRequestToken = function getRequestToken (cal
 	Parameters:
 	reqToken		-- oauth_token from GET parameters
 	verifier		-- oauth_verifier from GET parameters
-	reqTokenSecret		-- secret passed into earlier callback; see getRequestToken
+	reqTokenSecret		-- oauth_token_secret from GET parameters
 	
 	Callback should expect:
-	Access token to pass to KAOauthSession.get later on,
+	Access token to pass to KAOAuthSession.get later on,
 	Access token secret to do the same with
 */
 exports.KAOAuthSession.prototype.getAccessToken = function getAccessToken (reqToken, verifier, reqTokenSecret, callback) {
