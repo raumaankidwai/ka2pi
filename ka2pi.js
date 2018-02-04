@@ -21,6 +21,6 @@ KA2PI.getOAuthRequestToken(function (error, token, secret, results) {
 });
 
 http.createServer(function (request, response) {
-	var url = new URL(request.url, HOST);
+	var url = new URL(request.url, `http://${HOST}:${PORT}`);
 	console.log(url.query);
 }).listen(PORT);
