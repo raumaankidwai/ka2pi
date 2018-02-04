@@ -1,12 +1,13 @@
 const OAuth = require("oauth");
 
-exports = function KAOAuthSession (options) {
+exports.KAOAuthSession = function KAOAuthSession (options) {
 	this.KEY = options.KEY;
 	this.SECRET = options.SECRET;
 	this.HOST = options.HOST;
 	this.PORT = options.PORT;
+	this.ID = options.ID;
 	
-	this.CALLBACK = `http://${this.HOST}:${this.PORT}/callback`;
+	this.CALLBACK = `http://${this.HOST}:${this.PORT}/callback?id=${this.ID}`;
 	
 	this.session = new OAuth.OAuth(
 		`https://www.khanacademy.org/api/auth2/request_token?oauth_callback=${this.CALLBACK}`,
@@ -24,7 +25,7 @@ exports = function KAOAuthSession (options) {
 	URL to send to user,
 	request token secret (remember to pass this to getAccessToken later on!)
 */
-exports.prototype.getRequestToken = function getRequestToken (callback) {
+exports.KAOAuthSession.prototype.getRequestToken = function getRequestToken (callback) {
 	this.session.getOAuthRequestToken(function (error, token, secret, results) {
 		if (error) {
 			throw error;
@@ -44,7 +45,7 @@ exports.prototype.getRequestToken = function getRequestToken (callback) {
 	Access token to pass to KAOauthSession.get later on,
 	Access token secret to do the same with
 */
-exports.prototype.getAccessToken = function getAccessToken (reqToken, verifier, reqTokenSecret, callback) {
+exports.KAOAuthSession.prototype.getAccessToken = function getAccessToken (reqToken, verifier, reqTokenSecret, callback) {
 	this.session.getOAuthAccessToken(reqToken, verifier, reqTokenSecret, function (error, accessToken, accessTokenSecret) {
 		if (error) {
 			throw error;
@@ -63,7 +64,7 @@ exports.prototype.getAccessToken = function getAccessToken (reqToken, verifier, 
 	Callback should expect:
 	JSON.parse'd API response data
 */
-exports.prototype.get = function get (uri, accessToken, accessTokenSecret, callback) {
+exports.KAOAuthSession.prototype.get = function get (uri, accessToken, accessTokenSecret, callback) {
 	this.session.get(uri, accessToken, accessTokenSecret, function (error, response) {
 		if (error) {
 			throw error;
