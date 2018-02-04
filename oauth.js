@@ -1,6 +1,5 @@
 const http = require("http");
 const OAuth = require("oauth");
-const { URL } = require("url");
 
 exports = function KAOAuthSession (options) {
 	this.KEY = options.KEY;
