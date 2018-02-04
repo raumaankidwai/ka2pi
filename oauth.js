@@ -38,7 +38,7 @@ exports.prototype.getRequestToken = function getRequestToken (callback) {
 	Parameters:
 	reqToken		-- oauth_token from GET parameters
 	verifier		-- oauth_verifier from GET parameters
-	reqTokenSecret	-- secret passed into earlier callback; see getRequestToken
+	reqTokenSecret		-- secret passed into earlier callback; see getRequestToken
 	
 	Callback should expect:
 	Access token to pass to KAOauthSession.get later on,
@@ -56,8 +56,8 @@ exports.prototype.getAccessToken = function getAccessToken (reqToken, verifier, 
 
 /*
 	Parameters:
-	uri					-- path of the API endpoint you want to access, ex /api/v1/user/exercises
-	accessToken			-- accessToken passed into getAccessToken callback
+	uri			-- path of the API endpoint you want to access, ex /api/v1/user/exercises
+	accessToken		-- accessToken passed into getAccessToken callback
 	accessTokenSecret	-- accessTokenSecret passed into getAccessToken callback.
 	
 	Callback should expect:
