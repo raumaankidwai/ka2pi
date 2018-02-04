@@ -1,4 +1,3 @@
-const http = require("http");
 const OAuth = require("oauth");
 
 exports = function KAOAuthSession (options) {
